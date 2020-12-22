@@ -21,11 +21,12 @@ h3 {
 }
 
 h3 {
-  font-size: 1em;
+  font-size: 15px;
 }
 
 p {
-  font-size: 0.85em;
+  font-size: 0.7em;
+  line-height: 0.7em;
   margin: 10px;
   text-align: left;
 }
@@ -46,8 +47,8 @@ p {
 * on the page. */
 .map-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
+  top: 70px;
+  right: 0;
   background: rgba(255, 255, 255, 0.8);
   margin-left: 20px;
   font-family: Arial, sans-serif;
@@ -56,9 +57,9 @@ p {
 }
 
 #features {
-  bottom: 0;
-  height: 230px;
-  margin-bottom: 20px;
+line-height: 12px;
+  margin-right: 10px;
+ height:160px;
   width: 250px;
 }
 
@@ -111,15 +112,7 @@ display:none;
             mapboxgl: mapboxgl
         })
     );
-    // Add geolocate control to the map.
-map.addControl(
-new mapboxgl.GeolocateControl({
-positionOptions: {
-enableHighAccuracy: true
-},
-trackUserLocation: true
-})
-);
+
     
     map.on('load', function() {
   // the rest of the code will go in here
