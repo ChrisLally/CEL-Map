@@ -47,7 +47,7 @@ p {
 * on the page. */
 .map-overlay {
   position: absolute;
-  top: 55px;
+  top: 64px;
   right: 0;
   background: rgba(255, 255, 255, 0.8);
   margin-left: 20px;
@@ -80,6 +80,9 @@ display:none;
   height: 10px;
   margin-left: 5px;
 }
+.mapboxgl-ctrl-bottom-left{
+    display: none !important;
+}
 </style>
 </head>
 <body>
@@ -99,14 +102,16 @@ display:none;
 
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoiY2hyaXMtbGFsbHkiLCJhIjoiY2theXd3M2MxMG9sdjJ2b2FhejQ0MmFzMSJ9.o7kyyVCt8MFaYLogzZhk8g';
+    
     var map = new mapboxgl.Map({
         container: 'map',
         style: 'mapbox://styles/chris-lally/ckixt5l8x15zm19qq9drvkf3v',
+        attributionControl: false,
         center: [-79.4512, 43.6568],
         zoom: 2
     });
 // Add zoom and rotation controls to the map.
-    
+   
     map.addControl(
         new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
