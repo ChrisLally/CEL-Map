@@ -47,7 +47,7 @@ p {
 * on the page. */
 .map-overlay {
   position: absolute;
-  top: 70px;
+  top: 55px;
   right: 0;
   background: rgba(255, 255, 255, 0.8);
   margin-left: 20px;
@@ -58,9 +58,9 @@ p {
 
 #features {
 line-height: 12px;
-  margin-right: 10px;
+  margin-right: 45px;
  height:160px;
-  width: 250px;
+  width: 200px;
 }
 
 #legend {
@@ -106,14 +106,15 @@ display:none;
         zoom: 2
     });
 // Add zoom and rotation controls to the map.
-    map.addControl(
-	    new mapboxgl.NavigationControl());
+    
     map.addControl(
         new MapboxGeocoder({
             accessToken: mapboxgl.accessToken,
             mapboxgl: mapboxgl
         })
     );
+    map.addControl(
+	    new mapboxgl.NavigationControl());
 
     
     map.on('load', function() {
