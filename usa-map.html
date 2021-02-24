@@ -273,7 +273,7 @@
                     //set popup text
                     //You can adjust the values of the popup to match the headers of your CSV.
                     // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-                    var description = `<h3>` + e.features[0].properties.Name + `<br>`+`</h3>` + `<div class="grid-container">` + donationLink + `<div class="stack">`+ImageCode+e.features[0].properties.Description +`</div></div>`;
+                    var description = `<h3>` + e.features[0].properties.Name + `<br>`+`</h3>` + `<div class="grid-container">` + donationLink + `<div class="stack"><div>`+ImageCode+`</div><div>`+e.features[0].properties.Description +`</div></div></div>`;
 
                     // Ensure that if the map is zoomed out such that multiple
                     // copies of the feature are visible, the popup appears
