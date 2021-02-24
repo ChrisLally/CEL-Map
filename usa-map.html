@@ -3,9 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <div class="div-wrapper">
-      <img
-        src="https://cdn.shopify.com/s/files/1/0398/1954/2690/files/strong-marketplace-circle-logo.png?v=1605826592"
-      />
+   
     </div>
   
     <meta
@@ -95,7 +93,7 @@
         left: 0;
         bottom: 0;
         z-index: 9;
-        max-width: 50px;
+        max-width: 40px;
         background-color: #fff;
         padding-top: 10px;
         padding-right: 10px;
@@ -107,6 +105,7 @@
         position: absolute;
         height: 100%;
         width: 100%;
+         overflow: auto;
       }
 
       .div-wrapper2 img {
@@ -122,6 +121,7 @@
         padding-left: 10px;
         padding-bottom: 10px;
         border-radius: 0px 20px 20px 0px;
+        border-radius:50%;
       }
          .button {
         background-color: #EA27C2;
@@ -137,11 +137,24 @@
            border-radius:10px;
 
       }
-               .imagecode img {
+       img {
         
-        padding: 10px 10px;
-       border-radius:10px;
+        width:50px;
+         height:50px;
+       border-radius:20px;
+          float: center;
+         margin:5px;
+         
+      }
+      .grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+        text-align:center;
+}
 
+      .stack{
+        text-align:center;
       }
       
     </style>
@@ -252,15 +265,15 @@
                     var coordinates = e.features[0].geometry.coordinates.slice();
                  var donationLink = `<h4><a href="${e.features[0].properties.Link}" target="_blank" class="button">Visit Store</a></h4>`;
 
-                  var embed2 = `${e.features[0].properties.Embed}`;
+           
 
-                    var ImageCode = `<div>${e.features[0].properties.ImageCode}` ;
+                    var ImageCode = `${e.features[0].properties.ImageCode} ` ;
 
 
                     //set popup text
                     //You can adjust the values of the popup to match the headers of your CSV.
                     // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-                    var description = `<h3>` + e.features[0].properties.Name + `<br>`+`</h3>` + `</h4>` + donationLink ;
+                    var description = `<h3>` + e.features[0].properties.Name + `<br>`+`</h3>` + `<div class="grid-container">` + donationLink + `<div class="stack">`+ImageCode+e.features[0].properties.Description +`</div></div>`;
 
                     // Ensure that if the map is zoomed out such that multiple
                     // copies of the feature are visible, the popup appears
