@@ -279,7 +279,9 @@
      // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
 map.on('click', 'csvData', function (e) {
 map.flyTo({
-center: e.features[0].geometry.coordinates
+center: e.features[0].geometry.coordinates,
+  speed: 0.2, // make the flying slow
+curve: 1, // change the speed at which it zooms out
 });
 });
                   // Change the cursor to a pointer when the mouse is over the places layer.
