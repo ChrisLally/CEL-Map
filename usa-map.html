@@ -298,6 +298,15 @@ center: e.features[0].geometry.coordinates,
 
                 });
 
+                 map.on('load', function () {
+        
+        map.flyTo({
+            center: [-100,40],
+            zoom: 3.2,
+            essential: true // this animation is considered essential with respect to prefers-reduced-motion
+        });
+    });
+                
               });
             };
           });
