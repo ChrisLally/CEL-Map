@@ -3,7 +3,9 @@
   <head>
     <meta charset="utf-8" />
     <div class="div-wrapper">
-   
+    <img
+        src="https://uploads-ssl.webflow.com/5ff75371303e0cec91464713/6037bf1a2acfe80498872ae2_STRONG%20MARKETPLACE%20LOGO.png"
+      />
     </div>
   
     <meta
@@ -138,12 +140,12 @@
 
       }
        img {
-        
+        object-fit: cover;
         width:50px;
          height:50px;
        border-radius:20px;
           float: center;
-         margin:5px;
+    
          
       }
       .grid-container {
@@ -156,6 +158,9 @@
       .stack{
         text-align:center;
       }
+      div.mapboxgl-ctrl-bottom-left{
+    display: none !important;
+}
       
     </style>
   </head>
@@ -189,9 +194,11 @@
           var map = new mapboxgl.Map({
             container: 'map', // container id
             style: 'mapbox://styles/chris-lally/ckkrbwci002j317l9a9eec08x', //stylesheet location
+            attributionControl: false,
             center: [-100.411464, 37.7852299], // starting position
             zoom: 3,// starting zoom
             transformRequest: transformRequest
+            
           });
 
             map.addControl(
@@ -233,7 +240,7 @@
               success: function (csvData) { makeGeoJSON(csvData); }
             });
 
-
+map.addControl(new mapboxgl.NavigationControl());
 
             function makeGeoJSON(csvData) {
               csv2geojson.csv2geojson(csvData, {
@@ -289,13 +296,34 @@
                       .setHTML(description)
                       .addTo(map);
                   });
-     // Center the map on the coordinates of any clicked symbol from the 'symbols' layer.
-map.on('click', 'csvData', function (e) {
-map.flyTo({
+
+                  
+map.on('click','csvData', function (e) {
+  if (map.getZoom() < 6) {
+    
+    map.flyTo({
 center: e.features[0].geometry.coordinates,
-  speed: 0.2, // make the flying slow
-});
-});
+  speed: 0.5, // make the flying slow
+  zoom:6,
+})
+    
+  } 
+
+  else {
+      map.flyTo({
+center: e.features[0].geometry.coordinates,
+  speed: 0.5, // make the flying slow
+  zoom:map.getZoom(),
+      })
+  }
+}
+);
+  
+                  
+                  
+                  
+                  
+                  
                   // Change the cursor to a pointer when the mouse is over the places layer.
                   map.on('mouseenter', 'csvData', function () {
                     map.getCanvas().style.cursor = 'pointer';
