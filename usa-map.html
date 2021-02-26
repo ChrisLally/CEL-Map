@@ -39,7 +39,10 @@
       }
 
       .mapboxgl-popup-close-button {
-        display: none;
+        display: relative;
+        background:#fff;
+        border-radius:10px;
+        z-index:2;
       }
 
       .mapboxgl-popup-content {
@@ -51,7 +54,7 @@
       }
 
       .mapboxgl-popup-content-wrapper {
-        padding: 1%;
+        padding: 0%;
       }
 
       .mapboxgl-popup-content h3 {
@@ -62,14 +65,14 @@
         display: block;
         padding: 10px;
         font-weight: 700;
-        margin-top: -5px;
+        margin-top: 0px;
         border-radius: 20px 20px 0px 0px;
       }
 
       .mapboxgl-popup-content h4 {
         margin: 0;
         display: block;
-        padding: 2px 2px 2px 2px;
+        padding: 0px 0px 0px 0px;
         font-weight: 400;
         text-align:center;
       }
@@ -137,24 +140,27 @@
         text-decoration: none;
         display: inline-block;
         font-size: 10px;
-       
+          line-height:12px;
+       position:absolute;
+           bottom: 0;
+    left: 0;
+    right: 0;
         cursor: pointer;
-           border-radius:10px;
+           border-radius:0px 0px 10px 10px;
+        
       }
        .profile {
         object-fit: cover;
         width:90px;
          height:90px;
-       border-radius:20px;
+       border-radius:20px 20px 0px 0px;
           float: center;
     
          
       }
-      .grid-container {
-  display: grid;
-  grid-template-columns: auto ;
-  padding: 10px;
-        text-align:center;
+      .pop {
+        position:relative;
+  text-align:center;
 }
 
       .stack{
@@ -272,17 +278,17 @@ map.addControl(new mapboxgl.NavigationControl());
                   // location of the feature, with description HTML from its properties.
                   map.on('click', 'csvData', function (e) {
                     var coordinates = e.features[0].geometry.coordinates.slice();
-                 var donationLink = `<h4><a href="${e.features[0].properties.Link}" target="_blank" class="button">Visit Store</a></h4>`;
+                 var donationLink = `<h4><a href="${e.features[0].properties.Link}" target="_blank" class="button">`+e.features[0].properties.Name+` →</a></h4>`;
 
            
 
-                    var ImageCode = `<img class="profile" src="${e.features[0].properties.Image}"> ` ;
+                    var ImageCode = `<div class="image div"><img class="profile" src="${e.features[0].properties.Image}"><div>` ;
 
 
                     //set popup text
                     //You can adjust the values of the popup to match the headers of your CSV.
                     // For example: e.features[0].properties.Name is retrieving information from the field Name in the original CSV.
-                    var description = `<h3>` + e.features[0].properties.Name + `<br>`+`</h3>` + `<div class="grid-container">` + `<div class="stack"><div>`+ImageCode+`</div><div>`+e.features[0].properties.Description +donationLink+`</div></div></div>`;
+                    var description = `<div class="pop">`+ImageCode+ donationLink+`</div>`;
 
                     // Ensure that if the map is zoomed out such that multiple
                     // copies of the feature are visible, the popup appears
